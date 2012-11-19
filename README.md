@@ -1,0 +1,1 @@
+![image](https://github.com/satoruhiga/ofxStereoCamera/raw/master/example/bin/data/screenshot.png)
