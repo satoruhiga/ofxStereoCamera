@@ -84,9 +84,10 @@ void testApp::draw()
 	string str;
 	str += "[1] SIDE_BY_SIDE\n";
 	str += "[2] LINE_BY_LINE\n";
-	str += "[3] ANAGLYPH\n\n";
-	str += "[4] PARALLEL\n";
-	str += "[5] TOE_IN\n";
+	str += "[3] ANAGLYPH\n";
+	str += "[4] CROSS_EYED\n\n";
+	str += "[5] PARALLEL\n";
+	str += "[6] TOE_IN\n";
 	
 	ofSetColor(255);
 	ofDrawBitmapString(str, 10, 20);
@@ -107,12 +108,16 @@ void testApp::keyPressed(int key)
 	{
 		cam.setOutputMode(ofxStereoCameraOutputMode::ANAGLYPH);
 	}
+	else if (key == '4')
+	{
+		cam.setOutputMode(ofxStereoCameraOutputMode::CROSS_EYED);
+	}
 	
-	if (key == '4')
+	if (key == '5')
 	{
 		cam.setViewMode(ofxStereoCameraViewMode::PARALLEL);
 	}
-	else if (key == '5')
+	else if (key == '6')
 	{
 		cam.setViewMode(ofxStereoCameraViewMode::TOE_IN);
 	}
