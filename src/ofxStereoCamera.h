@@ -16,6 +16,7 @@ struct ofxStereoCameraOutputMode
 	enum Mode
 	{
 		SIDE_BY_SIDE,
+        CROSS_EYED,
 		LINE_BY_LINE,
 		SUTTER,
 		ANAGLYPH
@@ -74,6 +75,11 @@ public:
 			right_fbo.draw(0, 0, w / 2, h);
 			left_fbo.draw(0 + w / 2, 0, w / 2, h);
 		}
+		else if (output == ofxStereoCameraOutputMode::CROSS_EYED)
+		{
+			right_fbo.draw(0 + w / 4, h/4, w / 4, h / 4);
+			left_fbo.draw(0 + w / 2, h/4, w / 4, h / 4);
+		}
 		else if (output == ofxStereoCameraOutputMode::LINE_BY_LINE)
 		{
 			shader.begin();
@@ -104,10 +110,10 @@ public:
 
 			ofEnableBlendMode(OF_BLENDMODE_ADD);
 
-			ofSetColor(255, 0, 0);
+			ofSetColor(0, 255, 255);
 			left_fbo.draw(0, 0, w, h);
 
-			ofSetColor(0, 255, 255);
+			ofSetColor(255, 0, 0);
 			right_fbo.draw(0, 0, w, h);
 
 			ofPopStyle();
@@ -235,6 +241,16 @@ public:
 		return right_fbo.getTextureReference();
 	}
 
+	ofFbo * getLeftFbo()
+	{
+		return &left_fbo;
+	}
+	
+	ofFbo * getRightFbo()
+	{
+		return &right_fbo;
+	}
+    
 protected:
 
 	ofxStereoCameraViewMode::Mode view;
